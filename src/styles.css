@@ -51,10 +51,10 @@ kbd { font-family: var(--vt); font-size: 1em; border: 2px solid var(--line-2); p
 .logo { display: flex; align-items: center; gap: 0.7rem; font-family: var(--px); font-size: 0.7rem; color: var(--yellow); }
 .logo svg { image-rendering: pixelated; }
 .nav-links { display: flex; gap: 0.2rem; }
-.nav-links a { font-family: var(--vt); font-size: 1.3rem; letter-spacing: 0.06em; padding: 0.35rem 0.7rem; color: var(--muted); border: 2px solid transparent; }
-.nav-links a .cursor { display: inline-block; width: 0; overflow: hidden; color: var(--yellow); transition: width 0.1s steps(2); vertical-align: 1px; }
+.nav-links a { display: inline-flex; align-items: center; font-family: var(--vt); font-size: 1.3rem; letter-spacing: 0.06em; padding: 0.35rem 0.7rem; color: var(--muted); border: 2px solid transparent; }
+.nav-links a .cursor { display: inline-block; width: 0; overflow: hidden; color: var(--yellow); transition: width 0.1s steps(2); font-family: var(--px); font-size: 0.8rem; line-height: 1; margin-top: 1px; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
-.nav-links a:hover .cursor, .nav-links a.active .cursor { width: 1.1em; }
+.nav-links a:hover .cursor, .nav-links a.active .cursor { width: 1.4em; }
 .nav-right { display: flex; align-items: center; gap: 0.6rem; }
 .sound-btn { font-family: var(--vt); font-size: 1.15rem; background: none; border: 2px solid var(--line-2); padding: 0.2rem 0.6rem; color: var(--dim); cursor: pointer; letter-spacing: 0.06em; }
 .sound-btn[aria-pressed="true"] { color: var(--green); border-color: var(--green); text-shadow: 0 0 8px var(--green); }
@@ -156,7 +156,7 @@ kbd { font-family: var(--vt); font-size: 1em; border: 2px solid var(--line-2); p
 .inv-tabs { display: flex; flex-direction: column; border-right: 3px solid var(--line-2); background: #0a0a17; }
 .inv-tabs button { display: flex; align-items: center; gap: 0.6rem; text-align: left; background: none; border: none; border-bottom: 2px solid var(--line); padding: 0.9rem 1rem; font-family: var(--px); font-size: 0.58rem; color: var(--muted); cursor: pointer; }
 .inv-tabs button svg { image-rendering: pixelated; }
-.inv-tabs button .cursor { width: 0; overflow: hidden; color: var(--yellow); transition: width 0.1s steps(2); display: inline-block; }
+.inv-tabs button .cursor { width: 0; overflow: hidden; color: var(--yellow); transition: width 0.1s steps(2); display: inline-block; line-height: 1; }
 .inv-tabs button:hover { color: var(--text); }
 .inv-tabs button.active { color: var(--yellow); background: var(--panel-2); }
 .inv-tabs button.active .cursor, .inv-tabs button:hover .cursor { width: 1em; }
