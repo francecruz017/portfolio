@@ -13,7 +13,7 @@ export const profile = {
     "I'm Adan, a backend engineer from Pampanga who ended up leading teams because I kept volunteering for the parts nobody wanted: the payment gateway edge cases, the compliance reviews, the third-party API that only works on Tuesdays.",
     "Most of my decade has been PHP, Laravel, and Symfony, with REST and GraphQL APIs underneath healthcare, automotive, and e-commerce products. I've shipped things that move money and things that move prescriptions, so I take \"it works on my machine\" personally.",
     'I was early to agentic coding tools and now use them every day, from scaffolding to code review. I also evaluated self-hosted models for a healthcare production setup, which taught me exactly where the hype ends.',
-    "The thing I'm proudest of isn't a system. It's the junior developers I've mentored who are now mid-level and better than me at the things I taught them.",
+    "The thing I'm proudest of isn't a system. It's the junior developers I've mentored who are now mid-level and senior engineers, still leaning on the habits we built together.",
   ],
 }
 
@@ -147,7 +147,7 @@ export const inventory: Inventory[] = [
 
 export const trophies = [
   { name: 'SPEED RUNNER', text: 'Tuned APIs and backend workflows until the slow parts were not slow anymore.' },
-  { name: 'PARTY LEADER', text: "Mentored junior developers on every team I've led. Several are now mid-level and outgrowing me." },
+  { name: 'PARTY LEADER', text: "Mentored junior developers on every team I've led. Several are now mid-level, and some are senior engineers." },
   { name: 'ON-TIME DELIVERY', text: 'Led teams that shipped mission-critical projects on schedule and on budget, repeatedly.' },
   { name: 'BOSS: COMPLIANCE', text: 'Designed DEA credential access controls and caught the compliance issues before release did.' },
 ]
