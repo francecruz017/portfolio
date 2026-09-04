@@ -1,19 +1,19 @@
 <div align="center">
 
-# Adan France Cruz — Portfolio
+# ADAN.EXE
 
-**Software Engineer · Team Lead · AI‑Augmented Development**
+**Adan France Cruz · Backend Engineer · Team Lead**
 
-A space‑themed, interactive portfolio built with React, TypeScript, and Framer Motion.
+A retro arcade portfolio. Pixel sprites, a quest log, an inventory screen, a CRT terminal, and chiptune sound effects, all built by hand in React.
 
-[![Live site](https://img.shields.io/badge/Live%20site-francecruz017.github.io%2Fportfolio-7c5cff?style=for-the-badge&logo=githubpages&logoColor=white)](https://francecruz017.github.io/portfolio/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-adan--france--cruz-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/adan-france-cruz)
+[![Live site](https://img.shields.io/badge/PRESS%20START-francecruz017.github.io%2Fportfolio-ffd23f?style=for-the-badge&logo=githubpages&logoColor=black)](https://francecruz017.github.io/portfolio/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-adan--france--cruz-2de2e6?style=for-the-badge&logo=linkedin&logoColor=black)](https://linkedin.com/in/adan-france-cruz)
 
 ![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6-646cff?style=flat-square&logo=vite&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11-0055ff?style=flat-square&logo=framer&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-222?style=flat-square&logo=github&logoColor=white)
+![No UI library](https://img.shields.io/badge/UI%20library-none-ff2e88?style=flat-square)
 
 <br/>
 
@@ -23,17 +23,22 @@ A space‑themed, interactive portfolio built with React, TypeScript, and Framer
 
 <br/>
 
-## What's inside
+## The idea
 
-| | |
+Most developer portfolios look the same. This one is a game cartridge. Every section is a screen you would find in a 16‑bit RPG, and every piece of content is the real thing: nine years of backend work across healthcare, automotive, and e‑commerce, written in first person.
+
+| Screen | What it is |
 |---|---|
-| **Living hero** | Interactive particle constellation that reacts to the cursor, a rocket that crosses the sky, a ringed planet and a cratered moon, a typewriter cycling through roles, and a floating PHP class that describes the author. |
-| **Starfield backdrop** | Canvas‑drawn twinkling stars with shooting stars, drifting nebula orbs, and six parallax planets scattered down the page. |
-| **Experience timeline** | Expandable, colour‑coded cards for every role, with a rocket that travels down the timeline as you scroll. |
-| **Skill constellations** | Six skill groups on 3D tilt cards with a mouse‑tracking glow, plus a scrolling tech marquee. |
-| **Terminal easter egg** | Press <kbd>`</kbd> anywhere to open a working shell: `whoami`, `experience ironsail`, `skills`, `hire`, `resume ai`, plus a few hidden commands. |
-| **Beyond the code** | A personal section: dad, former band guitarist, Marvel and anime fan, retro gamer. |
-| **Responsive & accessible** | Mobile navigation, reduced‑motion support, keyboard‑navigable terminal, downloadable resumes. |
+| **Title screen** | HUD with 1UP, HP, and level. Hand‑drawn pixel rocket with an animated flame, three pixel planets, and a typewriter that cycles through roles. |
+| **Player profile** | Pixel avatar on a checkered character card, the story in my own words, and four "special moves". |
+| **Quest log** | Every role as a quest, with status stamps, objectives, and loot. A pixel ship travels down the dashed path as you scroll. |
+| **Inventory** | Skills as an RPG menu. Tabs for WEAPONS, MAGIC, TOOLS, ARMOR, KEY ITEMS, and PARTY, each with item slots. |
+| **Achievements** | Unlocked trophies, an origin story, and badges. |
+| **Bonus stage** | Off the clock: family, guitar, music, Marvel, retro games. |
+| **Continue?** | A looping countdown, an INSERT COIN button that emails me, and two save files (the resumes). |
+| **Terminal** | Press <kbd>`</kbd> for a green‑phosphor CRT shell with `whoami`, `quests inchcape`, `inventory`, `hire`, and a few hidden commands. |
+
+Sound effects are synthesized with the Web Audio API and off by default. Flip `SFX` in the nav to hear blips, coin drops, and a rocket launch.
 
 <br/>
 
@@ -41,28 +46,28 @@ A space‑themed, interactive portfolio built with React, TypeScript, and Framer
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/about.jpg" alt="About section with service pillars"/></td>
-    <td width="50%"><img src="docs/screenshots/experience.jpg" alt="Experience timeline with rocket"/></td>
+    <td width="50%"><img src="docs/screenshots/profile.jpg" alt="Player profile"/></td>
+    <td width="50%"><img src="docs/screenshots/quests.jpg" alt="Quest log"/></td>
   </tr>
   <tr>
-    <td><b>About & services</b> — summary, count‑up stats, and four pillars of what I deliver.</td>
-    <td><b>Experience</b> — nine years across healthcare, automotive, and e‑commerce.</td>
+    <td><b>Player profile</b></td>
+    <td><b>Quest log</b></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/skills.jpg" alt="Skills grid"/></td>
-    <td><img src="docs/screenshots/highlights.jpg" alt="Highlights, education and certifications"/></td>
+    <td><img src="docs/screenshots/inventory.jpg" alt="Inventory"/></td>
+    <td><img src="docs/screenshots/trophies.jpg" alt="Achievements"/></td>
   </tr>
   <tr>
-    <td><b>Skills</b> — backend‑first toolkit, fluent across modern frontend and agentic AI workflows.</td>
-    <td><b>Highlights</b> — achievements, education, and certifications.</td>
+    <td><b>Inventory</b></td>
+    <td><b>Achievements</b></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/life.jpg" alt="Beyond the code section"/></td>
-    <td><img src="docs/screenshots/contact.jpg" alt="Contact section"/></td>
+    <td><img src="docs/screenshots/bonus.jpg" alt="Bonus stage"/></td>
+    <td><img src="docs/screenshots/continue.jpg" alt="Continue screen"/></td>
   </tr>
   <tr>
-    <td><b>Beyond the code</b> — the human side, and how I work.</td>
-    <td><b>Contact</b> — email, LinkedIn, and both resumes one click away.</td>
+    <td><b>Bonus stage</b></td>
+    <td><b>Continue?</b></td>
   </tr>
 </table>
 
@@ -72,26 +77,24 @@ A space‑themed, interactive portfolio built with React, TypeScript, and Framer
 
 ### The terminal
 
-Every answer is generated from the same data file that powers the page, so the shell never drifts from the resume.
-
-<img src="docs/screenshots/terminal.jpg" width="900" alt="Terminal easter egg"/>
+<img src="docs/screenshots/terminal.jpg" width="900" alt="CRT terminal"/>
 
 <br/><br/>
 
-<img src="docs/screenshots/mobile.jpg" width="300" alt="Mobile view"/>
+<img src="docs/screenshots/mobile.jpg" width="300" alt="Mobile"/>
 
 </div>
 
 <br/>
 
-## Built with
+## How it's built
 
-- **React 18 + TypeScript** for the UI, with a single typed data file as the source of truth for every section and the terminal.
-- **Vite 6** for the toolchain and a relative base path so the build works at any URL.
-- **Framer Motion** for scroll‑linked reveals, the timeline rocket, layout‑animated navigation, and the terminal transitions.
-- **Canvas API** for the particle network, starfield, and shooting stars, hand‑written with no chart or particle libraries.
-- **Lucide** icons, **Space Grotesk / Inter / JetBrains Mono** type.
-- **GitHub Actions → GitHub Pages** for continuous deployment on every push to `main`.
+- **Pixel art is data.** Every sprite is a small array of strings in `src/pixel.ts`, one character per pixel, rendered to crisp SVG rects by a 20‑line component. The rocket has two frames for the flame.
+- **One typed data file** in `src/data.ts` drives every section and the terminal, so the shell can never drift from the page.
+- **Starfield** is a canvas that redraws at 12 fps on a 2 px grid so the twinkle steps like a real console instead of fading.
+- **Framer Motion** handles the scroll‑linked quest ship, the section reveals, and the CRT power‑on transition.
+- **No UI kit, no icon library.** Press Start 2P and VT323 for type, Inter for body text.
+- **GitHub Actions → GitHub Pages** deploys on every push to `main`.
 
 ## Run it locally
 
@@ -102,28 +105,27 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5173. `npm run build` produces the static site in `dist/`.
-
-## Project layout
+## Layout
 
 ```
 src/
-  data.ts                 all portfolio content in one typed file
+  data.ts                 all content, first person
+  pixel.ts                sprite maps and palette
+  sound.ts                Web Audio chiptune effects
   App.tsx                 page composition, launch button, terminal shortcut
   components/
-    Hero.tsx              headline, typewriter, code card, rocket flyby
-    Sections.tsx          stats, about, experience, skills, highlights, life, contact
-    Space.tsx             starfield, planets, rocket, timeline rocket
-    Effects.tsx           particles, cursor glow, reveal, tilt, magnetic buttons
-    Terminal.tsx          the easter‑egg shell
-    Nav.tsx               sticky nav with active‑section pill and mobile menu
-  styles.css              design tokens and all styling
-public/resume/            downloadable PDFs
-.github/workflows/        Pages deployment
+    Pixel.tsx             sprite renderer + animated Sprite
+    Hero.tsx              title screen
+    Sections.tsx          HUD, profile, quests, inventory, trophies, bonus, continue
+    Space.tsx             starfield, parallax planets, quest ship
+    Terminal.tsx          the CRT shell
+    Nav.tsx               menu with ▶ cursor, SFX toggle, mobile menu
+  styles.css              everything visual
+public/resume/            the two save files
 ```
 
 ---
 
 <div align="center">
-<sub>Designed and built by Adan France Cruz · <a href="https://francecruz017.github.io/portfolio/">francecruz017.github.io/portfolio</a></sub>
+<sub>Designed and built by Adan France Cruz · No continues used</sub>
 </div>

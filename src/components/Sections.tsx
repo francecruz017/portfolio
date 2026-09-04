@@ -1,114 +1,117 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll } from 'framer-motion'
-import { Award, BadgeCheck, Bot, ChevronDown, Cpu, CreditCard, GraduationCap, Layers, MapPin, Mail, Linkedin, Download, ArrowUpRight, Heart, Guitar, Music, Sparkles, Gamepad2, Target, Quote, type LucideIcon } from 'lucide-react'
-import { profile, stats, experience, skills, achievements, education, certifications, services, resumes, personal } from '../data'
-import { useCountUp } from '../hooks/useCountUp'
-import { Reveal, TiltCard, Magnetic } from './Effects'
-import { Rocket, TimelineRocket } from './Space'
+import { profile, hud, moves, quests, inventory, trophies, origin, badges, bonus, resumes } from '../data'
+import { Reveal } from './Effects'
+import { Icon } from './Icons'
+import { Pixel } from './Pixel'
+import { avatar, trophy as trophyMap } from '../pixel'
+import { TimelineShip } from './Space'
+import { sfx } from '../sound'
 
-function Stat({ value, suffix, label, i }: { value: number | string; suffix: string; label: string; i: number }) {
-  const { ref, value: v } = useCountUp(typeof value === 'number' ? value : 0)
+function Head({ tag, title, sub }: { tag: string; title: string; sub?: string }) {
   return (
-    <Reveal delay={i * 0.08}>
-      <div className="stat">
-        <div className="stat-value gradient-text"><span ref={ref}>{typeof value === 'number' ? v : value}</span>{suffix}</div>
-        <div className="stat-label">{label}</div>
+    <Reveal>
+      <div className="section-head">
+        <div className="tag">{tag}</div>
+        <h2 className="section-title">{title}</h2>
+        {sub && <p className="section-sub">{sub}</p>}
       </div>
     </Reveal>
   )
 }
 
-export function Stats() {
+export function Hud() {
   return (
     <div className="container">
-      <div className="stats">
-        {stats.map((s, i) => <Stat key={s.label} {...s} i={i} />)}
+      <div className="hud-tiles">
+        {hud.map((h, i) => (
+          <Reveal key={h.label} delay={i * 0.08}>
+            <div className="hud-tile">
+              <div className="hud-label">{h.label}</div>
+              <div className="hud-value">{h.value}</div>
+              <div className="hud-bar"><motion.i initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 + i * 0.1, ease: 'linear' }} /></div>
+              <div className="hud-note">{h.note}</div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </div>
   )
 }
 
-const serviceIcons = [Layers, CreditCard, Cpu, Bot]
-
-export function About() {
+export function Profile() {
   return (
-    <section className="section" id="about">
-      <div className="container about-grid">
-        <div>
+    <section className="section" id="profile">
+      <div className="container">
+        <Head tag="CHARACTER" title="PLAYER PROFILE" />
+        <div className="profile-grid">
           <Reveal>
-            <div className="section-head">
-              <span className="eyebrow">About</span>
-              <h2 className="section-title">Engineering leader with a <span className="gradient-text">builder's</span> mindset.</h2>
+            <div className="char-card">
+              <div className="char-frame"><Pixel map={avatar} scale={9} /></div>
+              <div className="char-plate">
+                <b>ADAN</b> <span>LV 09 · TEAM LEAD</span>
+                <small>{profile.location}</small>
+              </div>
             </div>
           </Reveal>
-          <div className="about-text">
-            {profile.summary.map((p, i) => (
-              <Reveal key={i} delay={0.1 + i * 0.08}><p>{p}</p></Reveal>
-            ))}
-            <Reveal delay={0.35}>
-              <p>Currently leading technical direction at <strong>IronSail</strong> on Impetus One, a healthcare platform where <strong>e-prescribing, payments, and compliance</strong> all have to work flawlessly together.</p>
-            </Reveal>
+          <div className="profile-text">
+            {profile.about.map((p, i) => <Reveal key={i} delay={0.05 + i * 0.06}><p>{p}</p></Reveal>)}
           </div>
         </div>
-        <div className="services">
-          {services.map((s, i) => {
-            const Icon = serviceIcons[i]
-            return (
-              <Reveal key={s.title} delay={0.15 + i * 0.1}>
-                <div className="service">
-                  <div className="service-icon"><Icon size={22} /></div>
-                  <div><h4>{s.title}</h4><p>{s.text}</p></div>
-                </div>
-              </Reveal>
-            )
-          })}
+        <Reveal delay={0.1}>
+          <div className="tag" style={{ marginTop: '3rem' }}>SPECIAL MOVES</div>
+        </Reveal>
+        <div className="moves">
+          {moves.map((m, i) => (
+            <Reveal key={m.name} delay={0.1 + i * 0.06}>
+              <div className="move" onMouseEnter={sfx.blip}>
+                <Icon name={m.icon} scale={5} />
+                <div><h4>{m.name}</h4><p>{m.text}</p></div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-export function Experience() {
+export function Quests() {
   const [open, setOpen] = useState<number | null>(0)
-  const timelineRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start 60%', 'end 60%'] })
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 55%', 'end 55%'] })
   return (
-    <section className="section" id="experience">
+    <section className="section" id="quests">
       <div className="container">
-        <Reveal>
-          <div className="section-head">
-            <span className="eyebrow">Experience</span>
-            <h2 className="section-title">Nine years of <span className="gradient-text">shipping</span>.</h2>
-            <p className="section-sub">From e-commerce storefronts to compliance-sensitive healthcare platforms, each role added depth in architecture, integrations, and leadership.</p>
-          </div>
-        </Reveal>
-        <div className="timeline" ref={timelineRef}>
-          <motion.div className="timeline-line" style={{ scaleY: scrollYProgress }} />
-          <TimelineRocket progress={scrollYProgress} />
-          {experience.map((e, i) => {
+        <Head tag="LOG" title="QUEST LOG" sub="Six stages so far. Storefronts first, then enterprise systems, then car sales at scale, and now healthcare, where every bug has a compliance officer." />
+        <div className="quests" ref={ref}>
+          <div className="quest-path" />
+          <TimelineShip progress={scrollYProgress} />
+          {quests.map((q, i) => {
             const isOpen = open === i
+            const n = String(quests.length - i).padStart(2, '0')
             return (
-              <Reveal key={e.company} delay={i * 0.06}>
-                <div className="exp" style={{ '--dot': e.color } as React.CSSProperties}>
-                  <div className="exp-dot" />
-                  <div className={`exp-card ${isOpen ? 'open' : ''}`}>
-                    <div className="exp-head" onClick={() => setOpen(isOpen ? null : i)} role="button" aria-expanded={isOpen}>
-                      <div>
-                        <h3>{e.role}</h3>
-                        <div className="exp-meta">
-                          <span className="exp-company">{e.company}</span>
-                          <span className="exp-domain">{e.domain}</span>
-                          <span className="exp-period">{e.period}</span>
-                        </div>
+              <Reveal key={q.company} delay={i * 0.05}>
+                <div className="quest" style={{ '--qc': q.color } as React.CSSProperties}>
+                  <div className={`quest-card ${isOpen ? 'open' : ''}`}>
+                    <button className="quest-head" onClick={() => { setOpen(isOpen ? null : i); sfx.select() }} onMouseEnter={sfx.blip} aria-expanded={isOpen}>
+                      <div className="quest-meta">
+                        <span className={`stamp ${q.status === 'IN PROGRESS' ? 'live' : ''}`}>{q.status}</span>
+                        <span className="quest-n">QUEST {n}</span>
+                        <span className="quest-world">{q.world}</span>
                       </div>
-                      <div className="exp-toggle"><ChevronDown size={18} /></div>
-                    </div>
+                      <h3>{q.role}</h3>
+                      <div className="quest-sub"><b>{q.company}</b> <span>{q.period}</span></div>
+                      <span className="quest-toggle">{isOpen ? '▲' : '▼'}</span>
+                    </button>
                     <AnimatePresence initial={false}>
                       {isOpen && (
-                        <motion.div key="body" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} style={{ overflow: 'hidden' }}>
-                          <div className="exp-body">
-                            <ul>{e.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
-                            <div className="tags">{e.stack.map((s) => <span className="tag" key={s}>{s}</span>)}</div>
+                        <motion.div key="b" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }} style={{ overflow: 'hidden' }}>
+                          <div className="quest-body">
+                            <div className="tag small">OBJECTIVES</div>
+                            <ul>{q.objectives.map((o) => <li key={o}><span className="chk">{q.status === 'COMPLETE' ? '☑' : '◆'}</span>{o}</li>)}</ul>
+                            <div className="tag small">LOOT</div>
+                            <div className="loot">{q.loot.map((l) => <span key={l}>{l}</span>)}</div>
                           </div>
                         </motion.div>
                       )}
@@ -124,115 +127,34 @@ export function Experience() {
   )
 }
 
-export function Skills() {
+export function Inventory() {
+  const [tab, setTab] = useState(0)
+  const cur = inventory[tab]
   return (
-    <section className="section" id="skills">
+    <section className="section" id="inventory">
       <div className="container">
+        <Head tag="ITEMS" title="INVENTORY" sub="Backend-first, fluent across the frontend, and an early adopter of the AI tools that are now part of the daily loop." />
         <Reveal>
-          <div className="section-head">
-            <span className="eyebrow">Skills</span>
-            <h2 className="section-title">A <span className="gradient-text">full-stack</span> toolkit, backend-first.</h2>
-            <p className="section-sub">Deep in PHP and its ecosystem, fluent across modern frontend, and an early adopter of agentic AI development.</p>
-          </div>
-        </Reveal>
-        <div className="skills-grid">
-          {skills.map((g, i) => (
-            <Reveal key={g.title} delay={i * 0.07}>
-              <TiltCard className="skill-card" style={{ '--accent': g.accent } as React.CSSProperties}>
-                <h3><i />{g.title}</h3>
-                <div className="tags">
-                  {g.items.map((s) => <span className="skill-chip" key={s}>{s}</span>)}
-                </div>
-              </TiltCard>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export function Highlights() {
-  return (
-    <section className="section" id="highlights">
-      <div className="container">
-        <Reveal>
-          <div className="section-head">
-            <span className="eyebrow">Highlights</span>
-            <h2 className="section-title">Results, credentials, and <span className="gradient-text">recognition</span>.</h2>
-          </div>
-        </Reveal>
-        <div className="highlights">
-          <div className="ach-grid">
-            {achievements.map((a, i) => (
-              <Reveal key={a.title} delay={i * 0.08}>
-                <div className="ach">
-                  <div className="ach-glow" />
-                  <div className="ach-num">0{i + 1}</div>
-                  <h4>{a.title}</h4>
-                  <p>{a.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <div className="edu-col">
-            <Reveal delay={0.1}>
-              <div className="edu">
-                <span className="eyebrow" style={{ color: 'var(--primary)' }}><GraduationCap size={14} /> Education</span>
-                <h4>{education.degree}</h4>
-                <p className="school">{education.school}</p>
-                <ul>{education.honors.map((h) => <li key={h}>{h}</li>)}</ul>
-              </div>
-            </Reveal>
-            {certifications.map((c, i) => (
-              <Reveal key={c.name} delay={0.2 + i * 0.08}>
-                <div className="cert">
-                  <div className="cert-icon">{i === 0 ? <BadgeCheck size={20} /> : <Award size={20} />}</div>
-                  <div><b>{c.name}</b><span>{c.issuer} · {c.date}</span></div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export function Contact() {
-  return (
-    <section className="section" id="contact">
-      <div className="container">
-        <Reveal>
-          <div className="contact-wrap">
-            <div className="orbit-deco" style={{ width: 420, height: 420, right: -120, top: -160 }} />
-            <div className="contact-rocket"><Rocket size={72} /></div>
-            <div className="contact-grid">
-              <div>
-                <span className="eyebrow">Contact</span>
-                <h2>Let's build something <span className="gradient-text">worth shipping</span>.</h2>
-                <p>Hiring for a senior backend engineer or team lead? Need a partner who can own architecture, integrations, and delivery? Reach out and let's talk.</p>
-                <div className="resume-links">
-                  <Magnetic><a className="btn btn-primary" href={`mailto:${profile.email}`}><Mail size={17} /> Email me</a></Magnetic>
-                  {resumes.map((r) => (
-                    <Magnetic key={r.file}><a className="btn" href={r.file} download><Download size={17} /> {r.label}</a></Magnetic>
+          <div className="inv">
+            <div className="inv-tabs" role="tablist">
+              {inventory.map((g, i) => (
+                <button key={g.tab} role="tab" aria-selected={i === tab} className={i === tab ? 'active' : ''} onClick={() => { setTab(i); sfx.select() }} onMouseEnter={sfx.blip}>
+                  <span className="cursor">▶</span><Icon name={g.icon} scale={2} /> {g.tab}
+                </button>
+              ))}
+            </div>
+            <div className="inv-panel">
+              <div className="inv-title"><Icon name={cur.icon} scale={4} /><div><b>{cur.tab}</b><span>{cur.title}</span></div></div>
+              <AnimatePresence mode="wait">
+                <motion.div key={cur.tab} className="inv-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.12 }}>
+                  {cur.items.map((it, i) => (
+                    <motion.div key={it} className="slot" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03, duration: 0.15 }} onMouseEnter={sfx.blip}>
+                      {it}
+                    </motion.div>
                   ))}
-                </div>
-              </div>
-              <div className="contact-list">
-                <a className="contact-item" href={`mailto:${profile.email}`}>
-                  <div className="ci"><Mail size={19} /></div>
-                  <div><small>Email</small><span>{profile.email}</span></div>
-                </a>
-                <a className="contact-item" href={profile.linkedin} target="_blank" rel="noreferrer">
-                  <div className="ci"><Linkedin size={19} /></div>
-                  <div><small>LinkedIn</small><span>linkedin.com/in/adan-france-cruz <ArrowUpRight size={14} style={{ verticalAlign: '-2px' }} /></span></div>
-                </a>
-                <div className="contact-item">
-                  <div className="ci"><MapPin size={19} /></div>
-                  <div><small>Location</small><span>{profile.location}</span></div>
-                </div>
-              </div>
+                  {Array.from({ length: Math.max(0, 12 - cur.items.length) }).map((_, i) => <div key={`e${i}`} className="slot empty" />)}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </Reveal>
@@ -241,40 +163,106 @@ export function Contact() {
   )
 }
 
-const personalIcons: Record<string, LucideIcon> = { family: Heart, guitar: Guitar, music: Music, marvel: Sparkles, games: Gamepad2, focus: Target }
-
-export function Personal() {
+export function Trophies() {
   return (
-    <section className="section" id="life">
+    <section className="section" id="trophies">
       <div className="container">
-        <Reveal>
-          <div className="section-head">
-            <span className="eyebrow">Beyond the code</span>
-            <h2 className="section-title">Dad, guitarist, <span className="gradient-text">player one</span>.</h2>
-            <p className="section-sub">{personal.intro}</p>
+        <Head tag="UNLOCKED" title="ACHIEVEMENTS" />
+        <div className="trophy-grid">
+          {trophies.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.06}>
+              <div className="trophy" onMouseEnter={sfx.blip}>
+                <Pixel map={trophyMap} scale={5} />
+                <div><div className="unlocked">UNLOCKED</div><h4>{t.name}</h4><p>{t.text}</p></div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="origin-grid">
+          <Reveal delay={0.1}>
+            <div className="origin">
+              <div className="tag small">ORIGIN STORY</div>
+              <h4>{origin.degree}</h4>
+              <p>{origin.school}</p>
+              <ul>{origin.honors.map((h) => <li key={h}>★ {h}</li>)}</ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="badges">
+              <div className="tag small">BADGES</div>
+              {badges.map((b) => (
+                <div className="badge" key={b.name}><Icon name="shield" scale={3} /><div><b>{b.name}</b><span>{b.issuer} · {b.date}</span></div></div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Bonus() {
+  return (
+    <section className="section" id="bonus">
+      <div className="container">
+        <Head tag="OFF THE CLOCK" title="BONUS STAGE" sub={bonus.intro} />
+        <div className="bonus-grid">
+          {bonus.items.map((b, i) => (
+            <Reveal key={b.title} delay={i * 0.06}>
+              <div className="bonus-card" onMouseEnter={sfx.blip}>
+                <Icon name={b.icon} scale={5} />
+                <h4>{b.title}</h4>
+                <p>{b.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.1}>
+          <div className="rules">
+            <div className="tag small">HOUSE RULES</div>
+            <div className="rules-list">{bonus.rules.map((r) => <span key={r}>▶ {r}</span>)}</div>
           </div>
         </Reveal>
-        <div className="life-grid">
-          {personal.items.map((it, i) => {
-            const Icon = personalIcons[it.icon]
-            return (
-              <Reveal key={it.title} delay={i * 0.07}>
-                <TiltCard className="life-card" style={{ '--accent': ['#f472b6', '#fbbf24', '#22d3ee', '#ef4444', '#34d399', '#7c5cff'][i] } as React.CSSProperties}>
-                  <div className="life-icon"><Icon size={22} /></div>
-                  <h4>{it.title}</h4>
-                  <p>{it.text}</p>
-                </TiltCard>
-              </Reveal>
-            )
-          })}
-        </div>
-        <Reveal delay={0.2}>
-          <div className="how-i-work">
-            <Quote size={20} />
-            <div>
-              <span className="eyebrow" style={{ color: 'var(--primary)' }}>How I work</span>
-              <div className="how-list">
-                {personal.howIWork.map((h) => <span key={h}>{h}</span>)}
+      </div>
+    </section>
+  )
+}
+
+function Countdown() {
+  const [n, setN] = useState(9)
+  useEffect(() => {
+    const t = setInterval(() => setN((v) => (v === 0 ? 9 : v - 1)), 1000)
+    return () => clearInterval(t)
+  }, [])
+  return <div className={`countdown ${n <= 3 ? 'urgent' : ''}`}>{n}</div>
+}
+
+export function Continue() {
+  return (
+    <section className="section" id="continue">
+      <div className="container">
+        <Reveal>
+          <div className="continue">
+            <div className="continue-top">
+              <div>
+                <div className="tag">GAME OVER?</div>
+                <h2 className="continue-title">CONTINUE?</h2>
+              </div>
+              <Countdown />
+            </div>
+            <div className="continue-grid">
+              <div>
+                <p className="continue-text">Hiring a team lead or a senior backend engineer? Need someone to own the integrations nobody else wants to touch? Insert coin. I reply fast.</p>
+                <div className="continue-actions">
+                  <a className="pbtn pbtn-primary" href={`mailto:${profile.email}`} onMouseEnter={sfx.blip} onClick={sfx.coin}>INSERT COIN · EMAIL ME</a>
+                  {resumes.map((r) => <a key={r.file} className="pbtn" href={r.file} download onMouseEnter={sfx.blip} onClick={sfx.select}>{r.label}</a>)}
+                </div>
+              </div>
+              <div className="contact-list">
+                <a className="contact-row" href={`mailto:${profile.email}`} onMouseEnter={sfx.blip}><small>EMAIL</small><span>{profile.email}</span></a>
+                <a className="contact-row" href={profile.linkedin} target="_blank" rel="noreferrer" onMouseEnter={sfx.blip}><small>LINKEDIN</small><span>linkedin.com/in/adan-france-cruz ↗</span></a>
+                <a className="contact-row" href={profile.github} target="_blank" rel="noreferrer" onMouseEnter={sfx.blip}><small>GITHUB</small><span>github.com/francecruz017 ↗</span></a>
+                <div className="contact-row"><small>LOCATION</small><span>{profile.location}</span></div>
               </div>
             </div>
           </div>
