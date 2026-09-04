@@ -53,7 +53,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer-inner">
           <a href="#top" className="logo"><span className="logo-mark">AFC</span>{profile.name}</a>
-          <span>© {new Date().getFullYear()} · Built with React. Press <kbd style={{ fontFamily: 'var(--font-mono)', border: '1px solid var(--border-strong)', borderRadius: 5, padding: '0 6px' }}>`</kbd> for a surprise.</span>
+          <span><a href={profile.repo} target="_blank" rel="noreferrer" style={{ color: 'var(--muted)', textDecoration: 'underline', textUnderlineOffset: 3 }}>View source on GitHub</a> · © {new Date().getFullYear()} · Press <kbd style={{ fontFamily: 'var(--font-mono)', border: '1px solid var(--border-strong)', borderRadius: 5, padding: '0 6px' }}>`</kbd> for a surprise.</span>
         </div>
       </footer>
       <AnimatePresence>

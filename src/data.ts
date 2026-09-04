@@ -8,6 +8,7 @@ export const profile = {
   email: 'adan.france.cruz@gmail.com',
   linkedin: 'https://linkedin.com/in/adan-france-cruz',
   github: 'https://github.com/francecruz017',
+  repo: 'https://github.com/francecruz017/portfolio',
   summary: [
     'Software Engineer and Team Lead with nearly a decade of experience designing, developing, and deploying scalable web applications and backend systems across healthcare, automotive, and e-commerce domains.',
     'Early adopter of AI-augmented and agentic development workflows, integrating agentic coding tools into daily engineering practice, from feature implementation and debugging to code review and team processes.',
